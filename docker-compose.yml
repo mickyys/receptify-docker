@@ -1,4 +1,3 @@
-version: '3'
 services:
   receptify:
     image: hampcl/receptify:1.0.0
