@@ -19,7 +19,8 @@ services:
       - ./certbot/www:/var/www/certbot
     depends_on:
       - receptify
-      - certbot
+      - certbot-init
+    entrypoint: /bin/bash -c "while [ ! -f /etc/letsencrypt/live/receptify.cl/fullchain.pem ]; do echo 'Esperando certificados SSL...'; sleep 5; done; echo 'Certificados encontrados, iniciando Nginx'; nginx -g 'daemon off;'"
 
   certbot:
     image: certbot/certbot
