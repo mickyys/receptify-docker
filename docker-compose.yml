@@ -17,7 +17,7 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    entrypoint: /bin/bash -c "while [ ! -f /etc/letsencrypt/live/receptify.cl/fullchain.pem ]; do echo 'Esperando certificados SSL...'; sleep 5; done; echo 'Certificados encontrados, iniciando Nginx'; nginx -g 'daemon off;'"
+    # entrypoint: /bin/bash -c "while [ ! -f /etc/letsencrypt/live/receptify.cl/fullchain.pem ]; do echo 'Esperando certificados SSL...'; sleep 5; done; echo 'Certificados encontrados, iniciando Nginx'; nginx -g 'daemon off;'"
 
   certbot:
     image: certbot/certbot
