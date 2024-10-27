@@ -7,7 +7,7 @@ services:
     env_file:
       - receptify.env
     volumes:
-      - logs:./logs
+      - ./logs:/app/logs  # Cambia esto a una ruta absoluta
 
   nginx:
     image: nginx:1.27.2
@@ -37,4 +37,4 @@ services:
     entrypoint: "certbot certonly --webroot --webroot-path=/var/www/certbot --email tu-email@example.com --agree-tos --no-eff-email -d receptify.cl -d www.receptify.cl"
 
 volumes:
-  logs: 
+  logs:
