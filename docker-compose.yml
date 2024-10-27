@@ -1,11 +1,13 @@
 services:
   receptify:
-    image: hampcl/receptify:1.0.3
+    image: hampcl/receptify:1.0.4
     container_name: receptify
     ports:
       - "3000:3000"
     env_file:
       - receptify.env
+    volumes:
+      - logs:./logs
 
   nginx:
     image: nginx:1.27.2
@@ -33,3 +35,6 @@ services:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
     entrypoint: "certbot certonly --webroot --webroot-path=/var/www/certbot --email tu-email@example.com --agree-tos --no-eff-email -d receptify.cl -d www.receptify.cl"
+
+volumes:
+  logs: 
