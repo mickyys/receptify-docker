@@ -1,11 +1,11 @@
 services:
   receptify:
-    image: hampcl/receptify:1.0.1
+    image: hampcl/receptify:1.0.2
     container_name: receptify
     ports:
       - "3000:3000"
-    environment:
-      - NODE_ENV=production
+    env_file:
+      - receptify.env
 
   nginx:
     image: nginx:latest
