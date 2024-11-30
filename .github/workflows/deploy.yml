@@ -22,14 +22,17 @@ jobs:
       - name: Run commands on EC2
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@ec2-18-219-15-136.us-east-2.compute.amazonaws.com << EOF
-            cd receptify  
-            ls -la && mkdir logs
+            cd receptify
+            ls -la && mkdir -p logs
             git pull origin main
+            
+            # Agregar variables al final del archivo .env
             {
               echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}"
               echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
               echo "AWS_S3_BUCKET_NAME=${{ secrets.AWS_S3_BUCKET_NAME }}"
             } >> receptify.env
+
             docker-compose down
             docker-compose up -d --build
           EOF
