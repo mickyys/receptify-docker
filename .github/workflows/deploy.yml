@@ -25,20 +25,11 @@ jobs:
             cd receptify  
             ls -la && mkdir logs
             git pull origin main
-            # Variables de entorno
-            declare -A env_vars
-            env_vars["AWS_ACCESS_KEY_ID"]="${{ secrets.AWS_ACCESS_KEY_ID }}"
-            env_vars["AWS_SECRET_ACCESS_KEY"]="${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-            env_vars["AWS_S3_BUCKET_NAME"]="${{ secrets.AWS_S3_BUCKET_NAME }}"
-
-            # Actualizar o agregar variables al archivo .env
-            for key in "\${!env_vars[@]}"; do
-              if grep -q "^$key=" receptify.env; then
-                sed -i "s|^$key=.*|$key=\${env_vars[\$key]}|" receptify.env
-              else
-                echo "$key=\${env_vars[\$key]}" >> receptify.env
-              fi
-            done
+            {
+              echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}"
+              echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+              echo "AWS_S3_BUCKET_NAME=${{ secrets.AWS_S3_BUCKET_NAME }}"
+            } >> receptify.env
             docker-compose down
             docker-compose up -d --build
           EOF
