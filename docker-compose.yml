@@ -1,13 +1,11 @@
 services:
   receptify:
-    image: hampcl/receptify:1.0.19
+    image: hampcl/receptify:1.0.20
     container_name: receptify
     ports:
       - "3000:3000"
     env_file:
       - receptify.env
-    args:
-      - NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=${NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
     volumes:
       - ./logs:/app/logs  # Cambia esto a una ruta absoluta
 
