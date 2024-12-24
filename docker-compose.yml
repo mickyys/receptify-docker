@@ -1,6 +1,6 @@
 services:
   receptify:
-    image: hampcl/receptify:1.0.41
+    image: hampcl/receptify:1.0.42
     container_name: receptify
     ports:
       - "3000:3000"
