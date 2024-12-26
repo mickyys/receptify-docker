@@ -36,6 +36,7 @@ jobs:
               echo "AWS_S3_BUCKET_NAME=${{ secrets.AWS_S3_BUCKET_NAME }}"
               echo "MAILGUN_API_KEY=${{ secrets.MAILGUN_API_KEY }}"
               echo "NEW_RELIC_LICENSE_KEY=${{ secrets.NEW_RELIC_LICENSE_KEY}}"
+              echo "NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=${{ secrets.GOOGLE_MAPS_API_KEY}}"
             } >> receptify.env
 
             docker-compose down
