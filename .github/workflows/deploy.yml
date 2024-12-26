@@ -25,6 +25,7 @@ jobs:
             cd receptify
             ls -la && mkdir -p logs
             git reset --hard
+            git fetch
             git checkout ${{ github.sha }}
             
             # Agregar variables al final del archivo .env
